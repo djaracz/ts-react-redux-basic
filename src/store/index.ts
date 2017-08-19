@@ -1,5 +1,7 @@
-import { createStore, compose, applyMiddleware, GenericStoreEnhancer } from 'redux';
 import thunk from 'redux-thunk';
+import { createStore, compose, applyMiddleware, GenericStoreEnhancer } from 'redux';
+import { routerMiddleware } from 'react-router-redux'; // tslint:disable-line
+import { browserHistory } from 'react-router';
 
 import { rootReducer } from '../reducers/index';
 
@@ -11,10 +13,15 @@ declare const window: Window & {
 const devToolsExtension: GenericStoreEnhancer = window.devToolsExtension ?
     window.devToolsExtension() : f => f;
 
+const middleware: Array<any> = [
+    routerMiddleware(browserHistory),
+    thunk
+];
+
 export const store = createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk),
+        applyMiddleware(...middleware),
         devToolsExtension
     ) as GenericStoreEnhancer
 );
