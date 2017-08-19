@@ -1,52 +1,18 @@
 import * as React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect, Dispatch } from 'react-redux';
 
-import { State as CounterState } from '../../reducers/counterReducer';
-import { CounterActions } from '../../actions/counterActions';
-import { RootState } from '../../reducers/index';
+import { Nav } from '../../components/Nav/Nav';
 
-namespace Main {
-    export interface DispatchProps {
-        incrementCounter: () => void;
-        decrementCounter: () => void;
-        resetCounter: () => void;
-    }
-
-    type StateProps = Partial<CounterState>;
-
-    type ReceivedProps = {
-        children: any
-    };
-
-    export type Props = Partial<StateProps> & Partial<DispatchProps> &
-        Partial<ReceivedProps>;
-    export type State = {};
-}
-
-class MainContainer extends React.Component<Main.Props, Main.State> {
+export class Main extends React.Component<{}, {}> {
     render() {
         const { children } = this.props;
 
         return (
             <div>
-                {children}
+                <Nav />
+                <div>
+                    {children}
+                </div>
             </div>
         );
     }
 }
-
-const mapStateToProps = (state: RootState) => ({
-    counter: state.counter
-});
-
-const mapDispatchToProps = (dispatch: Dispatch<Main.DispatchProps>) => bindActionCreators({
-    incrementCounter: CounterActions.incrementCounter,
-    decrementCounter: CounterActions.decrementCounter,
-    resetCounter: CounterActions.resetCounter
-}, dispatch);
-
-export const Main = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(MainContainer as any);
