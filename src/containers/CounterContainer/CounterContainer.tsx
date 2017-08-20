@@ -2,6 +2,8 @@ import * as React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect, Dispatch } from 'react-redux';
 
+import { Button } from 'reactstrap';
+
 import { State as CounterState } from '../../reducers/counterReducer';
 import { CounterActions } from '../../actions/counterActions';
 import { RootState } from '../../reducers/index';
@@ -30,10 +32,10 @@ class Counter extends React.Component<Counter.Props, Counter.State> {
 
         return (
             <div>
-                <button onClick={incrementCounter}>-</button>
+                <Button onClick={decrementCounter}>-</Button>
                 <span>{counter}</span>
-                <button onClick={decrementCounter}>-</button>
-                <button onClick={resetCounter}>reset</button>
+                <Button onClick={incrementCounter}>+</Button>
+                <Button onClick={resetCounter}>reset</Button>
             </div>
         );
     }
