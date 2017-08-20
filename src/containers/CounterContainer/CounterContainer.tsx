@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect, Dispatch } from 'react-redux';
 
@@ -7,6 +8,8 @@ import { Button } from 'reactstrap';
 import { State as CounterState } from '../../reducers/counterReducer';
 import { CounterActions } from '../../actions/counterActions';
 import { RootState } from '../../reducers/index';
+
+import { CounterElement } from './CounterContainer.s';
 
 namespace Counter {
     export interface DispatchProps {
@@ -30,10 +33,12 @@ class Counter extends React.Component<Counter.Props, Counter.State> {
             resetCounter
         } = this.props;
 
+        console.log('lodash test', _.has({ 'test': 1 }, 'test'));
+
         return (
             <div>
                 <Button onClick={decrementCounter}>-</Button>
-                <span>{counter}</span>
+                <CounterElement textColor='pink'>{counter}</CounterElement>
                 <Button onClick={incrementCounter}>+</Button>
                 <Button onClick={resetCounter}>reset</Button>
             </div>

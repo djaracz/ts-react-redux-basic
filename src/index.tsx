@@ -8,6 +8,7 @@ import { routes } from './routes';
 
 import registerServiceWorker from './utils/registerServiceWorker';
 
+import 'bootstrap/dist/css/bootstrap.css';
 import './styles/index.css';
 
 ReactDOM.render(
